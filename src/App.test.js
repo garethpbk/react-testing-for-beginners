@@ -1,7 +1,8 @@
-test('Fake Test', () => {
-  expect(true).toBeTruthy();
-});
+import { add } from './App';
 
-test('Fake Test 2', () => {
-  expect(true).toBeTruthy();
+// Unit test
+// It only tests one thing
+test('add', () => {
+  expect(add(1, 2)).toBe(3);
+  expect(add(5, -15)).toEqual(-10);
 });
