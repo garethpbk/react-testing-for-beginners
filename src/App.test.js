@@ -1,8 +1,18 @@
-import { add } from './App';
+import { total } from './App';
+import { add } from './add';
 
-// Unit test
-// It only tests one thing
-test('add', () => {
-  expect(add(1, 2)).toBe(3);
-  expect(add(5, -15)).toEqual(-10);
+jest.mock('./add', () => ({
+  add: jest.fn(() => 25)
+}));
+
+// Integration tests
+// Tests things working together
+test('total', () => {
+  expect(total(5, 20)).toBe('$25');
+  expect(add).toHaveBeenCalledTimes(1);
+
+  // Redundant
+  add.mockImplementation(() => 30);
+  expect(total(5, 25)).toBe('$30');
+  expect(add).toHaveBeenCalledTimes(2);
 });
